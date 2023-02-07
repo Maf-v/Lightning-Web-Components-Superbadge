@@ -16,13 +16,18 @@
       <!-- Bottom -->
       <lightning-layout-item size="12" class="slds-p-top_small slds-is-relative">
         <!-- Spinner goes here -->
-        <!-- boatSearchResults goes here -->
-        <c-boat-search-results
-        onloading={handleLoading}
-        ondoneloading={handleDoneLoading}
-        >
-        </c-boat-search-results>
-        <!-- onloading={handleLoading} ondoneloading={handleDoneLoading} -->
+        <template if:true={isLoading}>
+          <lightning-spinner></lightning-spinner>
+        </template>
+        <template if:false={isLoading}>
+          <!-- boatSearchResults goes here -->
+          <!-- onloading={handleLoading} ondoneloading={handleDoneLoading} -->
+          <c-boat-search-results
+          onloading={handleLoading}
+          ondoneloading={handleDoneLoading}
+          >
+          </c-boat-search-results>
+        </template>
       </lightning-layout-item>
     </lightning-layout>
   </template>
