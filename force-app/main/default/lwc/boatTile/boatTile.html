@@ -3,21 +3,21 @@
       <div style={backgroundStyle} class="tile"></div>
       <div class="lower-third">
         <!-- Boat information goes here -->
-        <h1 class="slds-truncate slds-text-heading_medium">{boat.Name}</h1>
-        <h2 class="slds-truncate slds-text-heading_small">{boat.Contact__r.Name}</h2>
+        <h1 class="slds-truncate slds-text-heading_medium">{boatData.Name}</h1>
+        <h2 class="slds-truncate slds-text-heading_small">{boatData.Contact__r.Name}</h2>
         <div class="slds-text-body_small">
           <span class="label">
-            Price: <lightning-formatted-number maximum-fraction-digits="2" value={boat.Price__c}></lightning-formatted-number>
+            Price: <lightning-formatted-number maximum-fraction-digits="2" value={boatData.Price__c}></lightning-formatted-number>
           </span>
         </div>
         <div class="slds-text-body_small">
           <span class="label">
-            Length: <lightning-formatted-number value={boat.Length__c}></lightning-formatted-number>
+            Length: <lightning-formatted-number value={boatData.Length__c}></lightning-formatted-number>
           </span>
         </div>
         <div class="slds-text-body_small">
           <span class="label">
-            Type: {boat.BoatType__r.Name}
+            Type: {boatData.BoatType__r.Name}
           </span>
         </div>
       </div>
