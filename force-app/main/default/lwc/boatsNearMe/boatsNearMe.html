@@ -6,7 +6,7 @@
         <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
        </template>
        <template if:false={isLoading}>
-        <lightning-map></lightning-map>
+        <lightning-map map-markers={mapMarkers}></lightning-map>
        </template>
        <div slot="footer">Top 10 Only!</div>
     </lightning-card>
