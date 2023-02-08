@@ -17,7 +17,7 @@
       <lightning-layout-item size="12" class="slds-p-top_small slds-is-relative">
         <!-- Spinner goes here -->
         <template if:true={isLoading}>
-          <lightning-spinner></lightning-spinner>
+          <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
         </template>
         <template if:false={isLoading}>
           <!-- boatSearchResults goes here -->
