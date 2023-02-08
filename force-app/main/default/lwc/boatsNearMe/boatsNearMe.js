@@ -1,5 +1,7 @@
 import { LightningElement, api, wire } from "lwc";
 import getBoatsByLocation from "@salesforce/apex/BoatDataService.getBoatsByLocation";
+import {ShowToastEvent} from 'lightning/platformShowToastEvent';
+
 const LABEL_YOU_ARE_HERE = 'You are here!';
 const ICON_STANDARD_USER = 'standard:user';
 const ERROR_TITLE = 'Error loading Boats Near Me';
@@ -20,6 +22,7 @@ export default class BoatsNearMe extends LightningElement {
   wiredBoatsJSON({error, data}) { 
     if (data) {
         this.createMapMarkers(JSON.parse(data));
+        this.isLoading = false;
     } else if (error) {
         const toastError = new ShowToastEvent({
             title: ERROR_TITLE,
@@ -27,6 +30,7 @@ export default class BoatsNearMe extends LightningElement {
             variant: ERROR_VARIANT
           });
         this.dispatchEvent(toastError);
+        this.isLoading = false;
     }
   }
   
@@ -36,7 +40,6 @@ export default class BoatsNearMe extends LightningElement {
     if (!this.isRendered) {
         this.getLocationFromBrowser();
         this.isRendered = true;
-        this.isLoading = false;
     }
   }
   
