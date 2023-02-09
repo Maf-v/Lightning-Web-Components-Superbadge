@@ -9,12 +9,20 @@
        <!-- lightning card for the content when wiredRecord has data goes here  -->
        <lightning-tabset variant="scoped">
 
-            <lightning-tab label="Details">
+            <lightning-tab value="details" label="Details">
                 <lightning-card title={boatName} icon-name={detailsTabIconName}>
                     <lightning-button slot="actions" label={label.labelFullDetails} onclick={navigateToRecordViewPage}>
 
                     </lightning-button>
                 </lightning-card>
+            </lightning-tab>
+
+            <lightning-tab value="reviews" label="Reviews">
+              
+            </lightning-tab>
+
+            <lightning-tab value="addReview" label="Add Review">
+              <c-boat-add-review-form oncretereview={handleReviewCreated}></c-boat-add-review-form>
             </lightning-tab>
 
        </lightning-tabset>
