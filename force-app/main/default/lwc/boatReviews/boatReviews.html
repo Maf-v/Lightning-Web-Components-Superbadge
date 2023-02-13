@@ -38,8 +38,10 @@
                   <div class="slds-text-longform">
                     <p class="slds-text-title_caps">{boatReview.Name}</p>
                     <!-- display Comment__c -->
+                    <lightning-formatted-rich-text value={boatReview.Comment__c}></lightning-formatted-rich-text>
                   </div>
                   <!-- display five star rating on readonly mode -->
+                  <c-five-star-rating value={boatReview.Rating__c} read-only="true"></c-five-star-rating>
                 </article>
               </li>
             </template>
