@@ -1,6 +1,6 @@
-import { LightningElement } from "lwc";
+import { LightningElement, api } from "lwc";
 import getAllReviews from "@salesforce/apex/BoatDataService.getAllReviews";
-import NavigationMixin from 'lightning/navigation';
+import { NavigationMixin } from 'lightning/navigation';
 
 export default class BoatReviews extends NavigationMixin(LightningElement) {
     // Private
@@ -13,11 +13,12 @@ export default class BoatReviews extends NavigationMixin(LightningElement) {
     get recordId() { 
       return this.boatId;
     }
+    @api
     set recordId(value) {
       //sets boatId attribute
-      this.boatId = value;
+      this.setAttribute('boatId', value);
       //sets boatId assignment
-      this.setAttribute('recordId', this.boatId);
+      this.boatId = value;
       //get reviews associated with boatId
       this.getReviews();
     }
@@ -29,7 +30,10 @@ export default class BoatReviews extends NavigationMixin(LightningElement) {
     }
     
     // Public method to force a refresh of the reviews invoking getReviews
-    refresh() { }
+    @api
+    refresh() { 
+      this.getReviews();
+    }
     
     // Imperative Apex call to get reviews for given boat
     // returns immediately if boatId is empty or null
@@ -40,8 +44,8 @@ export default class BoatReviews extends NavigationMixin(LightningElement) {
       this.isLoading = true;
       getAllReviews(this.boatId)
         .then(result => {this.boatReviews = result;})
-        .catch(error => {this.error = error;});
-      this.isLoading = false;
+        .catch(error => {this.error = error;})
+        .finally(() => {this.isLoading = false;});
     }
     
     // Helper method to use NavigationMixin to navigate to a given record on click

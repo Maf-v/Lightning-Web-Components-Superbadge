@@ -32,7 +32,7 @@ export default class BoatDetailTabs extends NavigationMixin(LightningElement) {
     labelPleaseSelectABoat: Please_select_a_boat,
   };
 
-  @wire(getRecord, { recordId: '$boatId', fields: '$BOAT_FIELDS'})
+  @wire(getRecord, { recordId: '$boatId', fields: BOAT_FIELDS})
   wiredRecord;
   
   @wire(MessageContext)
@@ -54,16 +54,16 @@ export default class BoatDetailTabs extends NavigationMixin(LightningElement) {
   
   // Subscribe to the message channel
   subscribeMC() {
+    if (this.subscription) return;
     // local boatId must receive the recordId from the message
-    return subscribe(this.messageContext, BOATMC, (message) => {
+    this.subscription = subscribe(this.messageContext, BOATMC, (message) => {
         this.boatId = message.recordId;
     });
   }
   
   // Calls subscribeMC()
   connectedCallback() { 
-    if (this.subscription) return;
-    this.subscription = this.subscribeMC();
+    this.subscribeMC();
   }
   
   // Navigates to record page
