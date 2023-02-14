@@ -25,7 +25,7 @@
                       <div class="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
                         <p>
                             <!-- display creator’s name -->
-                            <a onclick={navigateToRecord} data-record-id={boatReview.CreatedBy.Id}>{boatReview.CreatedBy.Name}</a>
+                          <a title={boatReview.CreatedBy.Name} onclick={navigateToRecord} data-record-id={boatReview.CreatedBy.Id}>{boatReview.CreatedBy.Name}</a>
                           <span>{boatReview.CreatedBy.CompanyName}</span>
                         </p>
                       </div>

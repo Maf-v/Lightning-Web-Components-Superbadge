@@ -28,7 +28,7 @@ export default class FiveStarRating extends LightningElement {
     if (this.isRendered) {
       return;
     }
-    this.loadScript;
+    this.loadScript();
 
     this.isRendered = true;
   }

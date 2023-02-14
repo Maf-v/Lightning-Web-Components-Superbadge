@@ -30,9 +30,9 @@ export default class BoatAddReviewForm extends LightningElement {
     }
     set recordId(value) {
       //sets boatId attribute
-      this.boatId = value;
+      this.setAttribute('boatId', value);
       //sets boatId assignment
-      this.setAttribute('recordId', this.recordId);
+      this.boatId = value;
     }
     
     // Gets user rating input from stars component
@@ -70,5 +70,11 @@ export default class BoatAddReviewForm extends LightningElement {
     handleReset() { 
       const inputFields = this.template.querySelectorAll('lightning-input-field');
       if (inputFields) inputFields.forEach(field => { field.reset(); });
+    }
+
+    handleError(event) {
+      console.log('Error: ', event.detail);
+      console.log(event.output);
+      console.log(event.message)
     }
   }

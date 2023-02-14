@@ -42,21 +42,20 @@ export default class BoatReviews extends NavigationMixin(LightningElement) {
     getReviews() { 
       if (!this.boatId) return;
       this.isLoading = true;
-      getAllReviews(this.boatId)
+      getAllReviews({boatId: this.boatId})
         .then(result => {this.boatReviews = result;})
         .catch(error => {this.error = error;})
         .finally(() => {this.isLoading = false;});
     }
     
     // Helper method to use NavigationMixin to navigate to a given record on click
-    navigateToRecord(event) {  
-      console.log(event);
-      /* this[NavigationMixin.Navigate]({
-        type: 'standard_recordPage',
+    navigateToRecord(event) {
+      this[NavigationMixin.Navigate]({
+        type: 'standard__recordPage',
         attributes: {
-          dataRecordId: ,
-          actionName: 'view',
+          recordId: event.target.dataset.recordId,
+          actionName: 'view'
         }
-      }) */
+      });
     }
   }
